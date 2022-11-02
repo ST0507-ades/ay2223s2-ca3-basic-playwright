@@ -1,0 +1,21 @@
+{
+  "name": "ay2223s2-ca3-basic-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ST0507-ades/ay2223s2-ca3-basic-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ST0507-ades/ay2223s2-ca3-basic-playwright/issues"
+  },
+  "homepage": "https://github.com/ST0507-ades/ay2223s2-ca3-basic-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.27.1"
+  }
+}
