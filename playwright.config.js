@@ -38,7 +38,8 @@ const config = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://3000-st0507ades-ca3ay2223s2i-n1np1ayzybp.ws-us73.gitpod.io/',
+    // baseURL: 'https://bed-recap.azurewebsites.net',
+    baseURL: 'https://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
