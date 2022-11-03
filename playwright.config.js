@@ -15,7 +15,7 @@ const { devices } = require('@playwright/test');
 const config = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 10 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -39,10 +39,10 @@ const config = {
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'https://bed-recap.azurewebsites.net',
-    baseURL: 'https://localhost:3000',
+    baseURL: 'https://3000-st0507ades-ca3ay2223s2s-mwrc3b5lev5.ws-us73.gitpod.io',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: process.env.CI ? 'off' : 'on',
 
     // Record video of each test
     video: process.env.CI ? 'off' : 'on',

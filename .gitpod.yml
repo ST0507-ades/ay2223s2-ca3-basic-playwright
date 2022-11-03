@@ -1,0 +1,4 @@
+tasks:
+  - name: Intall Browser and Deps
+    command: |
+      npx playwright install chromium && npx playwright install-deps chromium
