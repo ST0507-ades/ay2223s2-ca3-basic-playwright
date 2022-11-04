@@ -4,7 +4,6 @@ const { moduleCodes, moduleCredits, moduleGrades } = generateModuleCodeCreditGra
 
 function isUpdateResponse(module) {
   return function (response) {
-    console.log(response.request().url(), response.request().method(), [`/modules`, `/${module}`].every((p) => response.request().url().includes(p)) && response.request().method() === "PUT");
     return [`/modules`, `/${module}`].every((p) => response.request().url().includes(p)) && response.request().method() === "PUT";
   };
 }
