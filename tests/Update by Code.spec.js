@@ -2,6 +2,13 @@ const { test, expect } = require('@playwright/test');
 const { fillModules, generateModuleCodeCreditGrades } = require('../helper');
 const { moduleCodes, moduleCredits, moduleGrades } = generateModuleCodeCreditGrades();
 
+function isUpdateResponse(module) {
+  return function (response) {
+    console.log(response.request().url(), response.request().method(), [`/modules`, `/${module}`].every((p) => response.request().url().includes(p)) && response.request().method() === "PUT");
+    return [`/modules`, `/${module}`].every((p) => response.request().url().includes(p)) && response.request().method() === "PUT";
+  };
+}
+
 test.beforeEach(async function ({ page }) {
   await page.goto('/create');
   for (let i = 0; i < moduleCodes.length; i++) {
@@ -23,7 +30,7 @@ test('Should send update to server correctly', async function ({ page }) {
     await page.locator('input[name=code]').fill(module);
     await page.locator('input[name=credit]').fill((moduleCredits[i] + 1) + '');
     const [response] = await Promise.all([
-      page.waitForResponse(`**/modules/${module}`),
+      page.waitForResponse(isUpdateResponse(module)),
       page.locator('button[type=submit]').click()
     ]);
     await expect(response.ok()).toBeTruthy();
@@ -37,7 +44,7 @@ test("Should retrieve updated modules correctly", async function ({ page }) {
     await page.locator('input[name=code]').fill(module);
     await page.locator('input[name=credit]').fill((moduleCredits[i] + 1) + '');
     const [response] = await Promise.all([
-      page.waitForResponse(`**/modules/${module}`),
+      page.waitForResponse(isUpdateResponse(module)),
       page.locator('button[type=submit]').click()
     ]);
     await expect(response.ok()).toBeTruthy();
@@ -59,7 +66,7 @@ test('Should fail update module not in system', async function ({ page }) {
   await page.locator('input[name=code]').fill(module);
   await page.locator('input[name=credit]').fill('5');
   const [response] = await Promise.all([
-    page.waitForResponse(`**/modules/${module}`),
+    page.waitForResponse(isUpdateResponse(module)),
     page.locator('button[type=submit]').click()
   ]);
   await expect(response.ok()).toBeFalsy();
