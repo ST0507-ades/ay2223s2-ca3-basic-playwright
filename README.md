@@ -1,3 +1,5 @@
+> ### Latest Update: If you already implemented bulk retrieve and modified your frontend to use bulk retrieve, go to commons.js and set `isBulkRetrieve` to `true` before running it.
+
 1. `git clone https://github.com/ST0507-ades/ay2223s2-ca3-basic-playwright`
 2. `npm install` - To install dependencies
 3. Start your CA3 server at port 3000
