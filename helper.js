@@ -35,6 +35,7 @@ async function fillModules(page, moduleCodes) {
         await page.locator('input[name=code]').fill(module);
         await page.locator('button[type=submit]').click();
     }
+    page.setDefaultTimeout(3000);
     const responses = await Promise.all([
         ...moduleCodes.map((module) => page.waitForResponse(`**/${module}`)),
         page.locator('#retrieve').click()
