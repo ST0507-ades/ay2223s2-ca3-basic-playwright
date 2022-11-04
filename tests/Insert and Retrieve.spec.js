@@ -18,6 +18,18 @@ test("Should add module", async function ({ page }) {
 });
 
 test("Should Retrieve Inserted Modules", async function ({ page }) {
+  await page.goto('/create');
+  for (let i = 0; i < moduleCodes.length; i++) {
+    const module = moduleCodes[i];
+    await page.locator('input[name=code]').fill(module);
+    await page.locator('input[name=name]').fill(module);
+    await page.locator('input[name=credit]').fill(moduleCredits[i] + '');
+    const [response] = await Promise.all([
+      page.waitForResponse('**/modules'),
+      page.locator('button[type=submit]').click()
+    ]);
+  }
+
   const responses = await fillModules(page, moduleCodes);
   for (let i = 0; i < moduleCodes.length; i++) {
     const response = responses[i];
